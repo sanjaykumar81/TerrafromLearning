@@ -1,5 +1,13 @@
 This repo is about my learning from terraform.
 
+## Terrform folder structure
+```
+- modules/project
+  - main.tf
+  - variables.tf
+  - output.tf
+```
+
 ## Provider
 
 - Represent any of the cloud provider
@@ -116,7 +124,37 @@ myec2tag = dev-instance
 terrafrom plan -var-file="dev.tfvars"
 ```
 
-## variable interpolaration
+## variable interpolation
+- interpolation systax is "${something}"
+- variable interpolation was primarly used in Terraform 0.11 and has a sysntax like below 
+
+```tf
+"${var.myec2tag}"
+```
+- can used in the scenario when you have to prefix or suffix someting to a variable or want to perform some conditional assignment.
+
+## Expressions
+- Read [this](https://www.terraform.io/docs/configuration/expressions.html)
+
+
+## Comman Parameters
+- `count` to iterate/loop over a resurce
+- `for_each`
+- `for`
+
+## Command inbuilt function
+
+- `length` to determine the lenght of any array, string, etc
+- `upper` to change the case of a string to uppper
+- `toset` to flatten a arrar
+- `map
+
+## Useful terrafrom commands
+
+- `terraform fmt` - format our terrafrom files. 
+
+
+
 
 
 

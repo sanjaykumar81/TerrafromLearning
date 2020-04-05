@@ -17,6 +17,25 @@ provider "aws" {
   region = "eu-west-2"
 }
 ```
+## Backend
+- Terraform stores is state locally in the file called `terraform.tfstate`.
+- Storing Terraform state locally is good only when doing local development.
+- In real life and production environment, you will like to store your Terraform state in some remove repo so that you and your team can collaborate and your infrastructure is consistent.
+- Backend is a concpet which is used to define a remote storage for your tfstate file.
+- Terraform provides various option which can used as Backend. e.g `local, artifactory, azure, etcd, gcs, http, inmem, s3`
+- Below is the syntax for your backend definition.
+```tf
+terraform {
+  backend "s3" {
+    bucket = "sj-tf-state-bucket-uk" # name of the s3 bucket (exisiting) which will be used to store the tfstate file
+    region = "eu-west-2" # region of your bucket.
+    key = "sj-test-tf.tfstate" # name of the terraform state file
+  }
+}
+```
+- Thing to pay attention is that which ever resource you use to store the tfstate file should already exist. In above example the bucket `sj-tf-state-bucket-uk` should already present.
+- You should pre-create your backend resource either manually or through cli.
+
 
 ## resource 
 

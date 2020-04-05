@@ -170,7 +170,8 @@ var.myec2tag
 - `length` to determine the lenght of any array, string, etc
 - `upper` to change the case of a string to uppper
 - `toset` to flatten a arrar
-- `map
+- `map`
+- `file` allow us to refer to a file on local system as input value
 
 ## Useful terrafrom commands
 

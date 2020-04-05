@@ -17,6 +17,7 @@ provider "aws" {
   region = "eu-west-2"
 }
 ```
+
 ## Backend
 - Terraform stores is state locally in the file called `terraform.tfstate`.
 - Storing Terraform state locally is good only when doing local development.

@@ -1,5 +1,8 @@
 This repo is about my learning from terraform.
 
+## Sample code
+- Sample code is under the modules folder in this project. Its not extensive but basic stuff.
+
 ## Terrform folder structure
 ```
 - modules/project

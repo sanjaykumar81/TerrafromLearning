@@ -42,7 +42,7 @@ resource "aws_instance" "my_test_ec2" {
 
 ``` tf
 data "aws_instance" "myec2data" {
-  tags {
+  tags = {
     name = "welcome"
   }
 }
@@ -76,7 +76,7 @@ variable "myec2tag" {
 resource "aws_instance" "myec2instance" {
   ami = "ami-43242fsd"
   instance_type = "t2-micro"
-  tags {
+  tags = {
     name = var.myec2tag
   }
 }
@@ -131,6 +131,10 @@ terrafrom plan -var-file="dev.tfvars"
 ```tf
 "${var.myec2tag}"
 ```
+- From Terraform 12 you can use below syntax for interpolation.
+```tf
+var.myec2tag
+```
 - can used in the scenario when you have to prefix or suffix someting to a variable or want to perform some conditional assignment.
 
 ## Expressions
@@ -154,6 +158,36 @@ terrafrom plan -var-file="dev.tfvars"
 - `terraform fmt` - format our terrafrom files. 
 
 
+## Modules
+- Modules are primarly used for reuse of code. 
+- When using module your terrafrom project will have below structure
+```
+- Main Project
+  - main.tf
+  - variables.tf
+  - outputs.tf
+  - vpc_module
+    - main.tf
+    - variables.tf
+    - outputs.tf
+  - .
+  - .
+  - ModuleN
+    - main.tf
+    - variables.tf
+    - outputs.tf
+
+```
+- Modules can be used in the project main.tf as below
+```tf
+module "vpc_module" {
+  source              = "./module"
+  private_subnet_cidr = var.private_subnet_cidr # variables defined in the vpc_module
+  public_subnet_cidr  = var.public_subnet_cidr # variables defined in the vpc_module
+  vpc_cidr_block      = var.vpc_cidr_block # variables defined in the vpc_module
+}
+```
+- If you have defined variables in your modules and have default values assing to them then you have to provide those variables when using those modules in project main.tf
 
 
 
